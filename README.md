@@ -1,16 +1,21 @@
 # profiler_server
 
-profiler_server is CRUD server application
+## Description
 
-## To create this application I was using
-
-- Express
-- Mongoose
-- MongoDB
-- Multer (Multer is used for handling multipart/form-data (for uploading files))
-- Sharp (In this application Sharp is used for cropping images and converting them to JPG)
+profiler_server is Node.js web server application. It allows to create, read, update and delete profiles. Uploaded profile photos are being cropped to 200x200 pixels with center alignment (horizontally and vertically) and then being saved to the file structure of the application.
 
 ## Usage
+
+1. Clone repository `git clone`
+2. Go to cloned directory in terminal `cd profiler_server`
+3. Install the app with `npm install`
+4. Create `.env` file in the app directory with following items:
+
+- PORT (port, on which the server will run)
+- CONNECTION_URL (MongoDB connection URL)
+- STATIC_DIRECTORY (path to the directory where the cropped files will be stored)
+
+5. Run `npm start`
 
 ## Routes
 
@@ -137,6 +142,14 @@ Keep-Alive: timeout=5
 
 {"message":"Post with _id 612148e4e0d9ec81f3e54547 was successfully deleted"}
 ```
+
+## To create this application I was using
+
+- Express
+- Mongoose
+- MongoDB
+- Multer (Multer is used for handling multipart/form-data (for uploading files))
+- Sharp (In this application Sharp is used for cropping images and converting them to JPG)
 
 ## Requirements
 
