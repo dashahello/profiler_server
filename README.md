@@ -6,14 +6,14 @@ profiler_server is Node.js web server application. It allows to create, read, up
 
 ## Usage
 
-1. Clone repository `git clone`
+1. Clone repository `git clone https://github.com/dashahello/profiler_server.git`
 2. Go to cloned directory in terminal `cd profiler_server`
 3. Install the app with `npm install`
 4. Create `.env` file in the app directory with following items:
 
 - PORT (port, on which the server will run)
 - CONNECTION_URL (MongoDB connection URL)
-- STATIC_DIRECTORY (path to the directory where the cropped files will be stored)
+- STATIC_DIRECTORY (path to the directory where the cropped profile photos will be stored)
 
 5. Run `npm start`
 
