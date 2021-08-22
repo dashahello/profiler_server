@@ -61,7 +61,7 @@ const createProfile = async (req, res) => {
   const profileDataIsValid = validateProfileData(profileData);
   const profilePhotoIsValid = validateProfilePhoto(profilePhoto);
 
-  if (profileDataIsValid !== true || profilePhotoIsValid !== true) {
+  if (!profileDataIsValid || !profilePhotoIsValid) {
     console.log('Can not create a new profile');
     return res.status(400).json({ error: profileDataIsValid });
   }
@@ -92,28 +92,39 @@ const updateProfile = async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(_id)) {
     return res.status(400).json({ error: `_id ${_id} is invalid` });
   }
+
+  const profileDataIsValid = validateProfileData(profileData);
+
+  if (!profileDataIsValid) {
+    console.log('Can not update the profile');
+    return res.status(400).json({
+      error: profileDataIsValid
+    });
+  }
+
   const profilePhoto = req.file;
 
   if (profilePhoto) {
-    const profileDataIsValid = validateProfileData(profileData);
     const profilePhotoIsValid = validateProfilePhoto(profilePhoto);
 
-    if (profileDataIsValid !== true || profilePhotoIsValid !== true) {
+    if (!profilePhotoIsValid) {
       console.log('Can not update the profile');
-      return res.status(400).json({ error: profileDataIsValid });
+      return res.status(400).json({
+        error: profilePhotoIsValid
+      });
+    } else {
+      const photoFileName = uuidv4() + '.jpg';
+
+      await sharp(profilePhoto.buffer)
+        .resize(200, 200)
+        .toFile(`${process.env.STATIC_DIRECTORY}/${photoFileName}`);
+
+      profileData.photo = photoFileName;
+
+      const oldProfile = await Profile.findById(_id, 'photo');
+
+      await fs.unlink(`${process.env.STATIC_DIRECTORY}/${oldProfile.photo}`);
     }
-
-    const photoFileName = uuidv4() + '.jpg';
-
-    await sharp(profilePhoto.buffer)
-      .resize(200, 200)
-      .toFile(`${process.env.STATIC_DIRECTORY}/${photoFileName}`);
-
-    profileData.photo = photoFileName;
-
-    const oldProfile = await Profile.findById(_id, 'photo');
-
-    await fs.unlink(`${process.env.STATIC_DIRECTORY}/${oldProfile.photo}`);
   }
 
   const updatedProfile = await Profile.findByIdAndUpdate(_id, profileData, {

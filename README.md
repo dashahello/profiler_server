@@ -147,7 +147,7 @@ Keep-Alive: timeout=5
 {"message":"Post with _id 612148e4e0d9ec81f3e54547 was successfully deleted"}
 ```
 
-## To create this application I was using
+## This project was built using:
 
 - Express
 - Mongoose
