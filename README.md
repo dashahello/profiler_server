@@ -18,7 +18,7 @@ For better user experience use [profiler_client](https://github.com/dashahello/p
 - STATIC_DIRECTORY (path to the directory where the cropped profile photos will be stored)
 
 5. Run `npm start`
-6. Optionally use the [profiler_client](https://github.com/dashahello/profiler_client.git) which provides user interface
+6. Optionally use the [profiler_client](https://github.com/dashahello/profiler_client.git), which provides user interface, or Postman
 
 ## Routes
 
