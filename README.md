@@ -4,7 +4,7 @@
 
 profiler_server is Node.js web server application. It allows to create, read, update and delete profiles. Uploaded profile photos are being cropped to 200x200 pixels with center alignment (horizontally and vertically) and then being saved to the file structure of the application.
 
-For better user experience recomended to use [profiler_client](https://github.com/dashahello/profiler_client.git).
+For better user experience use [profiler_client](https://github.com/dashahello/profiler_client.git).
 
 ## Usage
 
