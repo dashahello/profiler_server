@@ -78,7 +78,8 @@ Keep-Alive: timeout=5
 
 `curl -i -H 'Accept: application/json' -d 'profiles?name=Jim&surname=Halpert&email=jim.halpert@jim.halpert&photo=photo.png' http://localhost:5000/profiles`
 
-For creating a new profile you need to add a file with proper type (JPEG, JPG, PNG, WEBP)
+For creating a new profile, a request must include:
+name, surname, valid email and photo (file with proper type (JPEG, JPG, PNG, WEBP))
 
 #### Response (example)
 

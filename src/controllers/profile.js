@@ -92,10 +92,17 @@ const updateProfile = async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(_id)) {
     return res.status(400).json({ error: `_id ${_id} is invalid` });
   }
-
   const profilePhoto = req.file;
 
   if (profilePhoto) {
+    const profileDataIsValid = validateProfileData(profileData);
+    const profilePhotoIsValid = validateProfilePhoto(profilePhoto);
+
+    if (profileDataIsValid !== true || profilePhotoIsValid !== true) {
+      console.log('Can not update the profile');
+      return res.status(400).json({ error: profileDataIsValid });
+    }
+
     const photoFileName = uuidv4() + '.jpg';
 
     await sharp(profilePhoto.buffer)
